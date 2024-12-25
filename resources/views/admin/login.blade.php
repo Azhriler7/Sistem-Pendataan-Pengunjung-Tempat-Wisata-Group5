@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin - Login</title>
+    <title>Login</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -40,29 +40,34 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Sistem Pendataan Pengunjung</h1>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" action="/api/login" method="POST">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                            <p class="registerLabel">Gmail</p>
+                                            <input type="email" class="form-control form-control-user" 
+                                                name="email" id="exampleInputEmail" aria-describedby="emailHelp" 
+                                                placeholder="Enter Email Address..." required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
+                                            <p class="registerLabel">Password</p>
+                                            <input type="password" class="form-control form-control-user" 
+                                                name="password" id="exampleInputPassword" 
+                                                placeholder="Password" required>
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
+                                                <input type="checkbox" class="custom-control-input" 
+                                                    id="customCheck" name="remember">
+                                                <label class="custom-control-label" for="customCheck">
+                                                    Remember Me
+                                                </label>
                                             </div>
                                         </div>
-                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
-                                        </a>
+                                        </button>
                                     </form>
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                        <a class="small" href="forgot-password">Forgot Password?</a>
                                     </div>
                                 </div>
                             </div>
