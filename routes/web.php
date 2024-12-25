@@ -22,3 +22,15 @@ Route::get('/profile', function () {
 Route::get('/forgot-password', function () {
     return view('admin.forgot');
 });
+
+Route::get('/statistik', function () {
+    return view('admin.statistik');
+});
+
+Route::get('/pendataan', function () {
+    return view('admin.tambah_pengunjung');
+});
+
+Route::get('/data-pengunjung', function () {
+    return view('admin.data_pengunjung');
+});

@@ -51,7 +51,7 @@
 
             <li class="nav-item">
 
-                <a class="nav-link" href="input">
+                <a class="nav-link" href="pendataan">
                 
                     <i class="fas fa-fw fa-user"></i>
                     <span>Pendataan</span>
@@ -60,7 +60,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="chart">
+                <a class="nav-link" href="statistik">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Chart Pengunjung</span>
                 </a>
@@ -69,7 +69,7 @@
             <!-- Nav Item - Tables -->
             <li class="nav-item">
 
-                <a class="nav-link" href="data">
+                <a class="nav-link" href="data-pengunjung">
 
                     <i class="fas fa-fw fa-table"></i>
                     <span>Data Pengunjung</span>
@@ -226,27 +226,6 @@
                         </div>
                     </div>
 
-                    <!-- Content Row -->
-
-                    <div class="row">
-
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Statistik Pengunjung Wisata</h6>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <!-- /.container-fluid -->
 
