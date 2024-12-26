@@ -40,35 +40,49 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Sistem Pendataan Pengunjung</h1>
                                     </div>
-                                    <form class="user" action="/api/register" method="POST">
-                                        <div class="form-group">
-                                            <p class="registerLabel">Gmail</p>
-                                            <input type="email" class="form-control form-control-user" 
-                                                name="email" id="exampleInputEmail" aria-describedby="emailHelp" 
-                                                placeholder="Enter Email Address" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <p class="registerLabel">Nama</p>
-                                            <input type="text" class="form-control form-control-user" 
-                                                name="name" id="exampleInputName" 
-                                                placeholder="Enter Fullname" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <p class="registerLabel">Password</p>
-                                            <input type="password" class="form-control form-control-user" 
-                                                name="password" id="exampleInputPassword" 
-                                                placeholder="Enter Password" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <p class="registerLabel">Ulangi Password</p>
-                                            <input type="password" class="form-control form-control-user" 
-                                                name="password_confirmation" id="exampleInputPasswordConfirmation" 
-                                                placeholder="Enter Password Again" required>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">
-                                            Register Account
-                                        </button>
-                                    </form>
+                                    <form class="user" action="{{ route('register') }}" method="POST">
+                                    @csrf
+                                    <div class="form-group">
+                                        <p class="registerLabel">Gmail</p>
+                                        <input type="email" class="form-control form-control-user" 
+                                            name="gmail" id="exampleInputEmail" aria-describedby="emailHelp" 
+                                            placeholder="Enter Email Address" value="{{ old('gmail') }}" required>
+                                        @error('gmail')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <p class="registerLabel">Nama Lengkap</p>
+                                        <input type="text" class="form-control form-control-user" 
+                                            name="nama_lengkap" id="exampleInputName" 
+                                            placeholder="Enter Fullname" value="{{ old('nama_lengkap') }}" required>
+                                        @error('nama_lengkap')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <p class="registerLabel">Password</p>
+                                        <input type="password" class="form-control form-control-user" 
+                                            name="password" id="exampleInputPassword" 
+                                            placeholder="Enter Password" required>
+                                        @error('password')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <p class="registerLabel">Ulangi Password</p>
+                                        <input type="password" class="form-control form-control-user" 
+                                            name="password_confirmation" id="exampleInputPasswordConfirmation" 
+                                            placeholder="Enter Password Again" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-user btn-block">
+                                        Register
+                                    </button>
+                                </form>
+                                <hr>
+                                <div class="text-center">
+                                    <a class="small" href="{{ route('login.form') }}">Already have an account? Login!</a>
+                                </div>
                                 </div>
                             </div>
                         </div>

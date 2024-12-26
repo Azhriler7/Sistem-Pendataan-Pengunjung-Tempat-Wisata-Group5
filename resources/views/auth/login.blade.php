@@ -41,33 +41,34 @@
                                         <h1 class="h4 text-gray-900 mb-4">Sistem Pendataan Pengunjung</h1>
                                     </div>
                                     <form class="user" action="{{ route('login') }}" method="POST">
+                                        @csrf
                                         <div class="form-group">
                                             <p class="registerLabel">Gmail</p>
                                             <input type="email" class="form-control form-control-user" 
-                                                name="email" id="exampleInputEmail" aria-describedby="emailHelp" 
+                                                name="gmail" id="exampleInputEmail" aria-describedby="emailHelp" 
                                                 placeholder="Enter Email Address..." required>
+                                            @error('gmail')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <p class="registerLabel">Password</p>
                                             <input type="password" class="form-control form-control-user" 
                                                 name="password" id="exampleInputPassword" 
-                                                placeholder="Password" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" 
-                                                    id="customCheck" name="remember">
-                                                <label class="custom-control-label" for="customCheck">
-                                                    Remember Me
-                                                </label>
-                                            </div>
+                                                placeholder="Enter Password" required>
+                                            @error('password')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
                                         </button>
                                     </form>
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password">Forgot Password?</a>
+                                        <a class="small" href="{{ route('register.form') }}">Register</a>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small" href="{{ route('forgot-password.form') }}">Forgot Password?</a>
                                     </div>
                                 </div>
                             </div>

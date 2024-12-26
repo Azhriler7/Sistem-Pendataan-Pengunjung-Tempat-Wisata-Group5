@@ -1,17 +1,17 @@
-@extends('layouts.admin')
+@extends('dashboard')
 
 @section('title', 'Edit Pengunjung - Sistem Pendataan Pengunjung')
 
 @section('main-content')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">{{ $JudulHalaman }}</h1>
+    <h1 class="h3 mb-0 text-gray-800">Data Pengunjung Wisata</h1>
 </div>
 
 <!-- Intro Text -->
 <div class="card shadow mb-4">
     <div class="card-body">
-        <p class="mb-0">{{ $introText }}</p>
+        <p class="mb-0">Berikut adalah data pengunjung wisata di tempat ini.</p>
     </div>
 </div>
 

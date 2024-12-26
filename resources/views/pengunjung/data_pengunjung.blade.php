@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('dashboard')
 
 @section('title', 'Data Pengunjung - Sistem Pendataan Pengunjung')
 
