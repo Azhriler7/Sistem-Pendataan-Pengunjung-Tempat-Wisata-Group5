@@ -13,33 +13,38 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    // Show the login form
     public function showLoginForm()
     {
         return view('auth.login');
     }
 
+    // Handle login request
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
+            'gmail' => ['required', 'email'],
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::guard('web')->attempt(['gmail' => $credentials['gmail'], 'password' => $credentials['password']])) {
             $request->session()->regenerate();
             return redirect()->intended('dashboard');
         }
 
         return back()->withErrors([
-            'email' => 'Email atau password salah.',
-        ])->onlyInput('email');
+            'gmail' => 'Email atau password salah.',
+        ])->onlyInput('gmail');
     }
 
+    // Handle logout request
     public function logout(Request $request)
     {
         Auth::logout();
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/login');
+
+        return redirect('/');
     }
 }
