@@ -61,12 +61,6 @@
                     <span>Data Pengunjung</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('register') }}">
-                    <i class="fas fa-fw fa-user-plus"></i>
-                    <span>Tambah Admin</span>
-                </a>
-            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -160,6 +154,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     @show
                 </div>
