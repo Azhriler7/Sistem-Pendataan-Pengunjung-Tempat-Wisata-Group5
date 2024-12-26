@@ -40,7 +40,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Sistem Pendataan Pengunjung</h1>
                                     </div>
-                                    <form class="user" action="/api/login" method="POST">
+                                    <form class="user" action="{{ route('login') }}" method="POST">
                                         <div class="form-group">
                                             <p class="registerLabel">Gmail</p>
                                             <input type="email" class="form-control form-control-user" 
