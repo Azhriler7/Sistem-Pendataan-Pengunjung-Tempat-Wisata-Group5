@@ -65,7 +65,10 @@
                                         </button>
                                     </form>
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password">Forgot Password?</a>
+                                        <a class="small" href="{{ route('register.form') }}">Register</a>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small" href="{{ route('forgot-password.form') }}">Forgot Password?</a>
                                     </div>
                                 </div>
                             </div>

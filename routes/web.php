@@ -16,8 +16,8 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 // Route untuk halaman registrasi
-Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register.form');
-Route::post('/register', [RegisterController::class, 'register'])->name('register');
+Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register.form');
+Route::post('register', [RegisterController::class, 'register'])->name('register');
 
 // Route untuk halaman lupa password
 Route::get('/forgot-password', [ForgotPasswordController::class, 'showResetForm'])->name('forgot-password.form');
