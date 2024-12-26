@@ -1,7 +1,6 @@
 @extends('admin.dashboard')
 
 @section('konten')
-
 <div class="container-fluid">
     <h1 class="h3 mb-2 text-gray-800">Statistik Data Pengunjung</h1>
 
@@ -36,50 +35,52 @@
     </div>
 </div>
 
-<!-- Tambahkan Library Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Data untuk Chart Area (Pengunjung Bulanan)
-        const ctxArea = document.getElementById('myAreaChart').getContext('2d');
-        const myAreaChart = new Chart(ctxArea, {
-            type: 'line',
-            data: {
-                labels: {!! json_encode($bulan) !!}, // Data label (bulan)
-                datasets: [{
-                    label: 'Jumlah Pengunjung',
-                    data: {!! json_encode($dataBulanan) !!}, // Data pengunjung bulanan
-                    backgroundColor: 'rgba(78, 115, 223, 0.05)',
-                    borderColor: 'rgba(78, 115, 223, 1)',
-                    borderWidth: 2,
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-            }
-        });
-
-        // Data untuk Chart Bar (Pengunjung Tahunan)
-        const ctxBar = document.getElementById('myBarChart').getContext('2d');
-        const myBarChart = new Chart(ctxBar, {
-            type: 'bar',
-            data: {
-                labels: {!! json_encode($tahun) !!}, // Data label (tahun)
-                datasets: [{
-                    label: 'Jumlah Pengunjung',
-                    data: {!! json_encode($dataTahunan) !!}, // Data pengunjung tahunan
-                    backgroundColor: 'rgba(54, 185, 204, 0.5)',
-                    borderColor: 'rgba(54, 185, 204, 1)',
-                    borderWidth: 2,
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-            }
-        });
-    });
-</script>
-
 @endsection
+
+@push('scripts')
+    <!-- Tambahkan Library Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Data untuk Chart Area (Pengunjung Bulanan)
+            const ctxArea = document.getElementById('myAreaChart').getContext('2d');
+            const myAreaChart = new Chart(ctxArea, {
+                type: 'line',
+                data: {
+                    labels: {!! json_encode($bulan) !!}, // Data label (bulan)
+                    datasets: [{
+                        label: 'Jumlah Pengunjung',
+                        data: {!! json_encode($dataBulanan) !!}, // Data pengunjung bulanan
+                        backgroundColor: 'rgba(78, 115, 223, 0.05)',
+                        borderColor: 'rgba(78, 115, 223, 1)',
+                        borderWidth: 2,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                }
+            });
+
+            // Data untuk Chart Bar (Pengunjung Tahunan)
+            const ctxBar = document.getElementById('myBarChart').getContext('2d');
+            const myBarChart = new Chart(ctxBar, {
+                type: 'bar',
+                data: {
+                    labels: {!! json_encode($tahun) !!}, // Data label (tahun)
+                    datasets: [{
+                        label: 'Jumlah Pengunjung',
+                        data: {!! json_encode($dataTahunan) !!}, // Data pengunjung tahunan
+                        backgroundColor: 'rgba(54, 185, 204, 0.5)',
+                        borderColor: 'rgba(54, 185, 204, 1)',
+                        borderWidth: 2,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                }
+            });
+        });
+    </script>
+@endpush

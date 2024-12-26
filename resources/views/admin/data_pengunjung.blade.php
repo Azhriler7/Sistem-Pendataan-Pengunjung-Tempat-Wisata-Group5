@@ -48,29 +48,35 @@
     </table>
 </div>
 
-<!-- Tambahkan CSS dan JS DataTables -->
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-
-<script>
-    $(document).ready(function() {
-        $('#pengunjungTable').DataTable({
-            dom: 'lBfrtip',
-            buttons: ['excel', 'csv', 'pdf'],
-            language: {
-                search: "Cari:",
-                lengthMenu: "Tampilkan _MENU_ data",
-                info: "Menampilkan _START_ hingga _END_ dari _TOTAL_ data",
-                paginate: {
-                    first: "Awal",
-                    last: "Akhir",
-                    next: "Berikutnya",
-                    previous: "Sebelumnya"
-                }
-            }
-        });
-    });
-</script>
-
 @endsection
+
+@push('styles')
+    <!-- Tambahkan CSS DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+@endpush
+
+@push('scripts')
+    <!-- Tambahkan JS DataTables -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#pengunjungTable').DataTable({
+                dom: 'lBfrtip',
+                buttons: ['excel', 'csv', 'pdf'],
+                language: {
+                    search: "Cari:",
+                    lengthMenu: "Tampilkan _MENU_ data",
+                    info: "Menampilkan _START_ hingga _END_ dari _TOTAL_ data",
+                    paginate: {
+                        first: "Awal",
+                        last: "Akhir",
+                        next: "Berikutnya",
+                        previous: "Sebelumnya"
+                    }
+                }
+            });
+        });
+    </script>
+@endpush

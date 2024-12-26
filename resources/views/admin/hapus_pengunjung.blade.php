@@ -67,9 +67,7 @@
 <script>
     document.getElementById('selectAll').addEventListener('change', function() {
         const checkboxes = document.querySelectorAll('input[name="ids[]"]');
-        for (const checkbox of checkboxes) {
-            checkbox.checked = this.checked;
-        }
+        checkboxes.forEach(checkbox => checkbox.checked = this.checked);
     });
 </script>
 
