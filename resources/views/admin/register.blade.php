@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Login</title>
+    <title>register</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -40,35 +40,35 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Sistem Pendataan Pengunjung</h1>
                                     </div>
-                                    <form class="user" action="/api/login" method="POST">
+                                    <form class="user" action="/api/register" method="POST">
                                         <div class="form-group">
                                             <p class="registerLabel">Gmail</p>
                                             <input type="email" class="form-control form-control-user" 
                                                 name="email" id="exampleInputEmail" aria-describedby="emailHelp" 
-                                                placeholder="Enter Email Address..." required>
+                                                placeholder="Enter Email Address" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <p class="registerLabel">Nama</p>
+                                            <input type="text" class="form-control form-control-user" 
+                                                name="name" id="exampleInputName" 
+                                                placeholder="Enter Fullname" required>
                                         </div>
                                         <div class="form-group">
                                             <p class="registerLabel">Password</p>
                                             <input type="password" class="form-control form-control-user" 
                                                 name="password" id="exampleInputPassword" 
-                                                placeholder="Password" required>
+                                                placeholder="Enter Password" required>
                                         </div>
                                         <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" 
-                                                    id="customCheck" name="remember">
-                                                <label class="custom-control-label" for="customCheck">
-                                                    Remember Me
-                                                </label>
-                                            </div>
+                                            <p class="registerLabel">Ulangi Password</p>
+                                            <input type="password" class="form-control form-control-user" 
+                                                name="password_confirmation" id="exampleInputPasswordConfirmation" 
+                                                placeholder="Enter Password Again" required>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
-                                            Login
+                                            Register Account
                                         </button>
                                     </form>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password">Forgot Password?</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>

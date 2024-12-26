@@ -23,11 +23,12 @@
 
     <div class="form-group">
         <label class="font-weight-bold">Umur</label>
-        <textarea 
-            class="form-control @error('umur') is-invalid @enderror" 
+        <input 
+            type="number" 
             name="umur" 
-            rows="5"
-        >{{ old('umur') }}</textarea>
+            value="{{ old('umur') }}" 
+            class="form-control @error('umur') is-invalid @enderror"
+        />
         @error('umur')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
