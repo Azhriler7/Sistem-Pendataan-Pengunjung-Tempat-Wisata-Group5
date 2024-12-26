@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DataPengunjungController;
+use App\Http\Controllers\StatistikPengunjungController;
 
 // Route untuk menampilkan halaman login
 Route::get('/login', function () {
@@ -34,3 +38,12 @@ Route::get('/pendataan', function () {
 Route::get('/data-pengunjung', function () {
     return view('admin.data_pengunjung');
 });
+
+Route::get('admin', [AdminController::class, 'index'])->name('admin.index');
+Route::post('admin', [AdminController::class, 'store']);
+
+
+Route::resource('data_pengunjung', DataPengunjungController::class);
+Route::resource('statistik', StatistikPengunjungController::class);
+Route::post('/login', [AdminController::class, 'login'])->name('login');
+Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
