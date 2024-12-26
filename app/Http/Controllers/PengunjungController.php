@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pengunjung;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Pengunjung;
 
 class PengunjungController extends Controller
 {
@@ -13,75 +12,64 @@ class PengunjungController extends Controller
         $this->middleware('auth');
     }
 
+    // Display a listing of the resource.
     public function index()
     {
-        $pengunjungs = Pengunjung::latest()->paginate(10);
-        return view('pengunjung.index', compact('pengunjungs'));
+        $pengunjungs = Pengunjung::all();
+        return view('pengunjung.data_pengunjung', compact('pengunjungs'));
     }
 
+    // Show the form for creating a new resource.
     public function create()
     {
-        return view('pengunjung.create');
+        return view('pengunjung.tambah_pengunjung');
     }
 
+    // Store a newly created resource in storage.
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'nama_pengunjung' => 'required|string|max:255',
-            'umur' => 'required|integer|min:0',
-            'asal' => 'required|string|max:255',
-            'tgl_lahir' => 'required|date',
-            'jenis_kelamin' => 'required|in:L,P',
-            'tgl_kunjungan' => 'required|date',
+        $request->validate([
+            'nama_lengkap' => 'required|string|max:255',
+            'gmail' => 'required|string|email|max:255|unique:pengunjungs',
+            'tanggal_kunjungan' => 'required|date',
         ]);
 
-        Pengunjung::create($validated);
-        return redirect()->route('pengunjung.index')->with('success', 'Data pengunjung berhasil ditambahkan!');
+        Pengunjung::create($request->all());
+
+        return redirect()->route('data-pengunjung.form')
+                         ->with('success', 'Pengunjung created successfully.');
     }
 
-    public function bulkDelete(Request $request)
+    // Show the form for editing the specified resource.
+    public function edit($id)
     {
-        if (!$request->has('ids')) {
-            return back()->with('error', 'Pilih minimal satu data untuk dihapus!');
-        }
-
-        Pengunjung::whereIn('id', $request->ids)->delete();
-        return back()->with('success', 'Data terpilih berhasil dihapus!');
+        $pengunjung = Pengunjung::find($id);
+        return view('pengunjung.edit_pengunjung', compact('pengunjung'));
     }
 
-    public function statistik()
+    // Update the specified resource in storage.
+    public function update(Request $request, $id)
     {
-        // Statistik harian
-        $dailyVisitors = Pengunjung::whereDate('tgl_kunjungan', today())
-            ->count();
+        $request->validate([
+            'nama_lengkap' => 'required|string|max:255',
+            'gmail' => 'required|string|email|max:255|unique:pengunjungs,gmail,' . $id,
+            'tanggal_kunjungan' => 'required|date',
+        ]);
 
-        // Statistik mingguan
-        $weeklyVisitors = Pengunjung::whereBetween('tgl_kunjungan', [
-            now()->startOfWeek(),
-            now()->endOfWeek()
-        ])->count();
+        $pengunjung = Pengunjung::find($id);
+        $pengunjung->update($request->all());
 
-        // Statistik berdasarkan jenis kelamin
-        $genderStats = Pengunjung::select('jenis_kelamin', DB::raw('count(*) as total'))
-            ->groupBy('jenis_kelamin')
-            ->get();
+        return redirect()->route('data-pengunjung.form')
+                         ->with('success', 'Pengunjung updated successfully.');
+    }
 
-        // Statistik berdasarkan umur
-        $ageStats = Pengunjung::select(
-            DB::raw('
-                CASE 
-                    WHEN umur < 18 THEN "< 18"
-                    WHEN umur BETWEEN 18 AND 30 THEN "18-30"
-                    WHEN umur BETWEEN 31 AND 50 THEN "31-50"
-                    ELSE "> 50"
-                END as age_group
-            '),
-            DB::raw('count(*) as total')
-        )
-            ->groupBy('age_group')
-            ->get();
+    // Remove the specified resource from storage.
+    public function destroy($id)
+    {
+        $pengunjung = Pengunjung::find($id);
+        $pengunjung->delete();
 
-        return view('statistik', compact('dailyVisitors', 'weeklyVisitors', 'genderStats', 'ageStats'));
+        return redirect()->route('data-pengunjung.form')
+                         ->with('success', 'Pengunjung deleted successfully.');
     }
 }
-

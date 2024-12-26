@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pengunjung;
+use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
@@ -11,14 +11,9 @@ class DashboardController extends Controller
         $this->middleware('auth');
     }
 
+    // Show the dashboard
     public function index()
     {
-        $dailyVisitors = Pengunjung::whereDate('tgl_kunjungan', today())->count();
-        $weeklyVisitors = Pengunjung::whereBetween('tgl_kunjungan', [
-            now()->startOfWeek(),
-            now()->endOfWeek()
-        ])->count();
-
-        return view('dashboard', compact('dailyVisitors', 'weeklyVisitors'));
+        return view('dashboard');
     }
 }
