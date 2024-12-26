@@ -12,7 +12,7 @@ class RegisterController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest')->except('logout');
     }
 
     // Show the registration form
@@ -47,8 +47,7 @@ class RegisterController extends Controller
         return Admin::create([
             'nama_lengkap' => $data['nama_lengkap'],
             'gmail' => $data['gmail'],
-            'password' => Hash::make($data['password']),
-            'tanggal_akun_dibuat' => now(),
+            'password' => bcrypt($data['password']),
         ]);
     }
 }

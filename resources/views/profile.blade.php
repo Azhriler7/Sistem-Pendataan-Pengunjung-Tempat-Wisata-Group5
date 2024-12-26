@@ -35,7 +35,7 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <a id="backButton" href="dashboard" class="btn btn-link rounded-circle mr-3 d-flex align-items-center" style="position: absolute; top: 0; left: 0; margin: 10px;">
+                    <a id="backButton" href="{{ route('dashboard') }}" class="btn btn-link rounded-circle mr-3 d-flex align-items-center" style="position: absolute; top: 0; left: 0; margin: 10px;">
                      <i class="fa fa-arrow-left" aria-hidden="true" style="margin-right: 5px;"></i>
                     Back
                 </a>
@@ -64,19 +64,19 @@
                         <div class="form-group">
                             <label class="registerLabel">Nama</label>
                             <div class="data-box">
-                                <p>John Doe</p>
+                                <p>{{ $admin->nama_lengkap ?? 'N/A' }}</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="registerLabel">Email</label>
                             <div class="data-box">
-                                <p>johndoe@gmail.com</p>
+                                <p>{{ $admin->gmail ?? 'N/A' }}</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="registerLabel">Waktu Akun Dibuat</label>
                             <div class="data-box">
-                                <p>2024-12-25 14:30:00</p>
+                                <p>{{ $admin->tanggal_akun_dibuat ?? 'N/A' }}</p>
                             </div>
                         </div>
                     </div>
