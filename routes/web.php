@@ -30,11 +30,11 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile');
 
 // Route untuk statistik pengunjung
-Route::get('/statistik', [StatistikController::class, 'index'])->name('statistik.form');
+Route::get('/statistik', [StatistikController::class, 'index'])->name('statistik');
 
 // Route untuk pendataan pengunjung (tambah pengunjung)
 Route::get('/pendataan', [PengunjungController::class, 'create'])->name('pendataan.form');
-Route::post('/pendataan', [PengunjungController::class, 'store'])->name('pendataan.store');
+Route::post('/pendataan', [PengunjungController::class, 'store'])->name('pengunjung.store');
 
 // Route untuk menampilkan data pengunjung
 Route::get('/data-pengunjung', [PengunjungController::class, 'index'])->name('data-pengunjung.form');
