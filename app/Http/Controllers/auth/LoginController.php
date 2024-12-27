@@ -13,13 +13,11 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    // Show the login form
     public function showLoginForm()
     {
         return view('auth.login');
     }
 
-    // Handle login request
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -37,7 +35,6 @@ class LoginController extends Controller
         ])->onlyInput('gmail');
     }
 
-    // Handle logout request
     public function logout(Request $request)
     {
         Auth::logout();

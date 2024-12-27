@@ -14,13 +14,11 @@ class ForgotPasswordController extends Controller
         $this->middleware('guest');
     }
 
-    // Show the form to reset the password
     public function showResetForm()
     {
         return view('auth.forgot');
     }
 
-    // Handle the password reset
     public function reset(Request $request)
     {
         $request->validate([

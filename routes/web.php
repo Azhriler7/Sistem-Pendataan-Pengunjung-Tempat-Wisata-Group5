@@ -45,4 +45,6 @@ Route::put('/data-pengunjung/{id}', [PengunjungController::class, 'update'])->na
 
 // Route untuk menghapus data pengunjung
 Route::delete('/data-pengunjung/{id}', [PengunjungController::class, 'destroy'])->name('data-pengunjung.destroy');
+
+Route::resource('pengunjung', PengunjungController::class);
 ?>

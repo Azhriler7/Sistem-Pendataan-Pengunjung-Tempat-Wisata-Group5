@@ -2,16 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Pengunjung;
+use Illuminate\Http\Request;
 
 class PengunjungController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     // Display a listing of the resource.
     public function index()
     {
@@ -22,45 +17,54 @@ class PengunjungController extends Controller
     // Show the form for creating a new resource.
     public function create()
     {
-        return view('pengunjung.tambah_pengunjung');
+        return view('pengunjung.create');
     }
 
     // Store a newly created resource in storage.
     public function store(Request $request)
     {
         $request->validate([
-            'nama_lengkap' => 'required|string|max:255',
-            'gmail' => 'required|string|email|max:255|unique:pengunjungs',
-            'tanggal_kunjungan' => 'required|date',
+            'nama' => 'required|string|max:255',
+            'usia' => 'required|integer',
+            'asal' => 'required|string|max:255',
+            'kewarganegaraan' => 'required|string|max:255',
+            'tanggal_berkunjung' => 'required|date',
         ]);
 
         Pengunjung::create($request->all());
 
-        return redirect()->route('data-pengunjung.form')
-                         ->with('success', 'Pengunjung created successfully.');
+        return redirect()->route('pengunjung.index')->with('success', 'Pengunjung berhasil ditambahkan.');
+    }
+
+    // Display the specified resource.
+    public function show($id)
+    {
+        $pengunjung = Pengunjung::find($id);
+        return view('pengunjung.show', compact('pengunjung'));
     }
 
     // Show the form for editing the specified resource.
     public function edit($id)
     {
         $pengunjung = Pengunjung::find($id);
-        return view('pengunjung.edit_pengunjung', compact('pengunjung'));
+        return view('pengunjung.edit', compact('pengunjung'));
     }
 
     // Update the specified resource in storage.
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_lengkap' => 'required|string|max:255',
-            'gmail' => 'required|string|email|max:255|unique:pengunjungs,gmail,' . $id,
-            'tanggal_kunjungan' => 'required|date',
+            'nama' => 'required|string|max:255',
+            'usia' => 'required|integer',
+            'asal' => 'required|string|max:255',
+            'kewarganegaraan' => 'required|string|max:255',
+            'tanggal_berkunjung' => 'required|date',
         ]);
 
         $pengunjung = Pengunjung::find($id);
         $pengunjung->update($request->all());
 
-        return redirect()->route('data-pengunjung.form')
-                         ->with('success', 'Pengunjung updated successfully.');
+        return redirect()->route('pengunjung.index')->with('success', 'Pengunjung berhasil diperbarui.');
     }
 
     // Remove the specified resource from storage.
@@ -69,7 +73,6 @@ class PengunjungController extends Controller
         $pengunjung = Pengunjung::find($id);
         $pengunjung->delete();
 
-        return redirect()->route('data-pengunjung.form')
-                         ->with('success', 'Pengunjung deleted successfully.');
+        return redirect()->route('pengunjung.index')->with('success', 'Pengunjung berhasil dihapus.');
     }
 }

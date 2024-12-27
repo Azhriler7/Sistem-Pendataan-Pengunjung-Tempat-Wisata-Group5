@@ -15,13 +15,11 @@ class RegisterController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    // Show the registration form
     public function showRegistrationForm()
     {
         return view('auth.register');
     }
 
-    // Handle registration request
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
@@ -31,7 +29,6 @@ class RegisterController extends Controller
         return redirect()->route('login.form')->with('success', 'Registration successful. Please login.');
     }
 
-    // Validate the registration request
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -41,7 +38,6 @@ class RegisterController extends Controller
         ]);
     }
 
-    // Create a new admin instance
     protected function create(array $data)
     {
         return Admin::create([
