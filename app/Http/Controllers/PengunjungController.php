@@ -15,8 +15,8 @@ class PengunjungController extends Controller
     // Display a listing of the resource.
     public function index()
     {
-        $pengunjungs = Pengunjung::all();
-        return view('pengunjung.data_pengunjung', compact('pengunjungs'));
+        $pengunjungData = Pengunjung::all();
+        return view('pengunjung.data_pengunjung', compact('pengunjungData'));
     }
 
     // Show the form for creating a new resource.
@@ -29,9 +29,13 @@ class PengunjungController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_lengkap' => 'required|string|max:255',
-            'gmail' => 'required|string|email|max:255|unique:pengunjungs',
-            'tanggal_kunjungan' => 'required|date',
+            'nama_pengunjung' => 'required|string|max:255',
+            'umur' => 'required|integer',
+            'asal' => 'required|string|max:255',
+            'tgl_lahir' => 'required|date',
+            'jenis_kelamin' => 'required|string|max:255',
+            'kewarganegaraan' => 'required|string|max:255',
+            'tgl_kunjungan' => 'required|date',
         ]);
 
         Pengunjung::create($request->all());
@@ -43,17 +47,21 @@ class PengunjungController extends Controller
     // Show the form for editing the specified resource.
     public function edit($id)
     {
-        $pengunjung = Pengunjung::find($id);
-        return view('pengunjung.edit_pengunjung', compact('pengunjung'));
+        $detailPengunjung = Pengunjung::find($id);
+    return view('pengunjung.edit_pengunjung', compact('detailPengunjung'));
     }
 
     // Update the specified resource in storage.
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_lengkap' => 'required|string|max:255',
-            'gmail' => 'required|string|email|max:255|unique:pengunjungs,gmail,' . $id,
-            'tanggal_kunjungan' => 'required|date',
+            'nama_pengunjung' => 'required|string|max:255',
+            'umur' => 'required|integer',
+            'asal' => 'required|string|max:255',
+            'tgl_lahir' => 'required|date',
+            'jenis_kelamin' => 'required|string|max:255',
+            'kewarganegaraan' => 'required|string|max:255',
+            'tgl_kunjungan' => 'required|date',
         ]);
 
         $pengunjung = Pengunjung::find($id);

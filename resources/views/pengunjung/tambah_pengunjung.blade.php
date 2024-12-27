@@ -11,14 +11,14 @@
 <!-- Intro Text -->
 <div class="card shadow mb-4">
     <div class="card-body">
-        <p class="mb-0">Berikut adalah data pengunjung wisata di tempat ini.</p>
+        <p class="mb-0">Input data pengunjung dibawah.</p>
     </div>
 </div>
 
 <!-- Registration Form -->
 <div class="card shadow mb-4">
     <div class="card-body">
-        <form method="POST" action="{{ route('pengunjung.store') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('pendataan.store') }}" enctype="multipart/form-data">
             @csrf
 
             <div class="row">
@@ -35,7 +35,7 @@
 
                     <div class="form-group">
                         <label class="font-weight-bold">Umur</label>
-                        <input type="number" name="umur" value="{{ old('umur') }}" 
+                        <input type="number" name="umur" value="{{ old('umur') }}"
                             class="form-control @error('umur') is-invalid @enderror"/>
                         @error('umur')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -76,17 +76,14 @@
                             <label class="custom-control-label" for="female">Perempuan</label>
                         </div>
                         @error('jenis_kelamin')
-                            <div class="text-danger small mt-1">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="form-group">
                         <label class="font-weight-bold">Kewarganegaraan</label>
-                        <select name="kewarganegaraan" class="form-control @error('kewarganegaraan') is-invalid @enderror">
-                            <option value="">Pilih Kewarganegaraan</option>
-                            <option value="WNI" {{ old('kewarganegaraan') == 'WNI' ? 'selected' : '' }}>WNI</option>
-                            <option value="WNA" {{ old('kewarganegaraan') == 'WNA' ? 'selected' : '' }}>WNA</option>
-                        </select>
+                        <input type="text" name="kewarganegaraan" value="{{ old('kewarganegaraan') }}" 
+                            class="form-control @error('kewarganegaraan') is-invalid @enderror"/>
                         @error('kewarganegaraan')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -94,7 +91,7 @@
 
                     <div class="form-group">
                         <label class="font-weight-bold">Tanggal Kunjungan</label>
-                        <input type="datetime-local" name="tgl_kunjungan" value="{{ old('tgl_kunjungan') }}" 
+                        <input type="date" name="tgl_kunjungan" value="{{ old('tgl_kunjungan') }}" 
                             class="form-control @error('tgl_kunjungan') is-invalid @enderror"/>
                         @error('tgl_kunjungan')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -103,14 +100,7 @@
                 </div>
             </div>
 
-            <div class="form-group text-right mb-0">
-                <a href="{{ url()->previous() }}" class="btn btn-warning">
-                    <i class="fas fa-arrow-left mr-1"></i> Batal
-                </a>
-                <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-save mr-1"></i> Simpan Data
-                </button>
-            </div>
+            <button type="submit" class="btn btn-primary">Tambah Pengunjung</button>
         </form>
     </div>
 </div>

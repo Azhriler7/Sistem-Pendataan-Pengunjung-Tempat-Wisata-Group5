@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pengunjung;
 
 class DashboardController extends Controller
 {
@@ -11,9 +12,11 @@ class DashboardController extends Controller
         $this->middleware('auth');
     }
 
-    // Show the dashboard
     public function index()
     {
-        return view('dashboard');
+        // Fetch the total number of visitors
+        $totalPengunjung = Pengunjung::count();
+
+        return view('dashboard', compact('totalPengunjung'));
     }
 }

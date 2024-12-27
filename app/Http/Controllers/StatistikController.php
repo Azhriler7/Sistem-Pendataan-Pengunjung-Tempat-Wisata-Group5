@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pengunjung;
+use Carbon\Carbon;
 
 class StatistikController extends Controller
 {
@@ -15,12 +16,21 @@ class StatistikController extends Controller
     // Show the statistics page
     public function index()
     {
-        // Contoh pengambilan data statistik, sesuaikan dengan kebutuhan Anda
+        // Fetch the total number of visitors
         $totalPengunjung = Pengunjung::count();
-        $pengunjungPerBulan = Pengunjung::selectRaw('MONTH(created_at) as bulan, COUNT(*) as jumlah')
+
+        // Fetch the number of visitors per day
+        $pengunjungPerHari = Pengunjung::selectRaw('DATE(tgl_kunjungan) as tanggal, COUNT(*) as jumlah')
+                                       ->groupBy('tanggal')
+                                       ->orderBy('tanggal')
+                                       ->get();
+
+        // Fetch the number of visitors per month
+        $pengunjungPerBulan = Pengunjung::selectRaw('DATE_FORMAT(tgl_kunjungan, "%Y-%m") as bulan, COUNT(*) as jumlah')
                                         ->groupBy('bulan')
+                                        ->orderBy('bulan')
                                         ->get();
 
-        return view('statistik.index', compact('totalPengunjung', 'pengunjungPerBulan'));
+        return view('statistik.index', compact('totalPengunjung', 'pengunjungPerHari', 'pengunjungPerBulan'));
     }
 }

@@ -89,7 +89,6 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Nama Admin</span>
-                                <img class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}">
                             </a>
                             <!-- Dropdown -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -122,38 +121,24 @@
 
                     <!-- Content Row -->
                     <div class="row">
-                        <!-- Daily Visitors -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Pengunjung (Harian)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">40,000</div>
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Total Pengunjung</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalPengunjung ?? 0 }}</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                            <i class="fas fa-users fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- Weekly Visitors -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Pengunjung (Mingguan)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">215,000</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
+
 
                     </div>
                     @show
@@ -161,20 +146,6 @@
                 <!-- /.container-fluid -->
             </div>
             <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Sistem Pendataan Pengunjung 2024</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
-        </div>
-        <!-- End of Content Wrapper -->
-    </div>
-    <!-- End of Page Wrapper -->
 
     <!-- Logout Modal -->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

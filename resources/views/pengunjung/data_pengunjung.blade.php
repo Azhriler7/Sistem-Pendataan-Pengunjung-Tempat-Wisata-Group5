@@ -8,6 +8,30 @@
     <h1 class="h3 mb-0 text-gray-800">Daftar Pengunjung</h1>
 </div>
 
+<!-- Filters -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="filterKewarganegaraan" class="font-weight-bold">Filter Kewarganegaraan</label>
+                <select id="filterKewarganegaraan" class="form-control">
+                    <option value="">Semua</option>
+                    <option value="Indonesia">Indonesia</option>
+                    <option value="Asing">Asing</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="filterJenisKelamin" class="font-weight-bold">Filter Jenis Kelamin</label>
+                <select id="filterJenisKelamin" class="form-control">
+                    <option value="">Semua</option>
+                    <option value="Laki-laki">Laki-laki</option>
+                    <option value="Perempuan">Perempuan</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Data Table -->
 <div class="card shadow mb-4">
     <div class="card-body">
@@ -27,35 +51,31 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($pengunjungData as $key => $pengunjung)
-                        <tr>
-                            <td>{{ $key + 1 }}</td>
-                            <td>{{ $pengunjung->nama_pengunjung }}</td>
-                            <td>{{ $pengunjung->umur }}</td>
-                            <td>{{ $pengunjung->asal }}</td>
-                            <td>{{ $pengunjung->tgl_lahir }}</td>
-                            <td>{{ $pengunjung->jenis_kelamin }}</td>
-                            <td>{{ $pengunjung->kewarganegaraan }}</td>
-                            <td>{{ $pengunjung->tgl_kunjungan }}</td>
-                            <td>
-                                <a href="{{ route('pengunjung.edit', $pengunjung->id) }}" class="btn btn-warning btn-sm">
-                                    <i class="fas fa-edit"></i> Edit
-                                </a>
-                                <form action="{{ route('pengunjung.destroy', $pengunjung->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">
-                                        <i class="fas fa-trash"></i> Hapus
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="9" class="text-center">Tidak ada data pengunjung.</td>
-                        </tr>
-                    @endforelse
-                </tbody>
+    @forelse ($pengunjungData as $key => $pengunjung)
+        <tr>
+            <td>{{ $key + 1 }}</td>
+            <td>{{ $pengunjung->nama_pengunjung }}</td>
+            <td>{{ $pengunjung->umur }}</td>
+            <td>{{ $pengunjung->asal }}</td>
+            <td>{{ $pengunjung->tgl_lahir }}</td>
+            <td>{{ $pengunjung->jenis_kelamin }}</td>
+            <td>{{ $pengunjung->kewarganegaraan }}</td>
+            <td>{{ $pengunjung->tgl_kunjungan }}</td>
+            <td>
+                <a href="{{ route('pengunjung.edit', $pengunjung->id) }}" class="btn btn-warning">Edit</a>
+                <form action="{{ route('data-pengunjung.destroy', $pengunjung->id) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+    @empty
+        <tr>
+            <td colspan="9">No data available</td>
+        </tr>
+    @endforelse
+</tbody>
             </table>
         </div>
     </div>
@@ -84,7 +104,7 @@
 
 <script>
 $(document).ready(function() {
-    $('#pengunjungTable').DataTable({
+    var table = $('#pengunjungTable').DataTable({
         dom: '<"d-flex justify-content-between align-items-center mb-4"Bf>rt<"d-flex justify-content-between align-items-center"lip>',
         buttons: [
             {
@@ -117,6 +137,14 @@ $(document).ready(function() {
         },
         pageLength: 10,
         lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Semua"]]
+    });
+
+    $('#filterKewarganegaraan').on('change', function() {
+        table.column(6).search(this.value).draw();
+    });
+
+    $('#filterJenisKelamin').on('change', function() {
+        table.column(5).search(this.value).draw();
     });
 });
 </script>

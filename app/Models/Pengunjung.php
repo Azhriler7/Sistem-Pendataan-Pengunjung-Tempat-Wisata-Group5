@@ -9,15 +9,17 @@ class Pengunjung extends Model
 {
     use HasFactory;
     
-    protected $table = 'pengunjung';
+    protected $table = 'data_pengunjung';
 
     protected $fillable = [
-        'nama', 
-        'usia', 
+        'nama_pengunjung', 
+        'umur', 
         'asal', 
+        'tgl_lahir', 
+        'jenis_kelamin', 
         'kewarganegaraan', 
-        'tanggal_berkunjung'
+        'tgl_kunjungan'
     ];
 
-    protected $dates = ['tanggal_berkunjung'];
+    protected $dates = ['tgl_kunjungan'];
 }

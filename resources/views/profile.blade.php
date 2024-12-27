@@ -8,33 +8,6 @@
     <h1 class="h3 mb-0 text-gray-800">Profile</h1>
 </div>
 
-<<<<<<< HEAD
-<!-- Profile Content -->
-<div class="row justify-content-center">
-    <div class="col-xl-8 col-lg-10">
-        <div class="card shadow mb-4">
-            <div class="card-body">
-                <div class="text-center mb-4">
-                    <img class="img-profile rounded-circle mb-3" src="{{ asset('img/undraw_profile.svg') }}" alt="Profile Picture" style="width: 150px; height: 150px;">
-                </div>
-                <div class="user-data px-4">
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label font-weight-bold">Nama</label>
-                        <div class="col-sm-9">
-                            <div class="form-control-plaintext">John Doe</div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label font-weight-bold">Email</label>
-                        <div class="col-sm-9">
-                            <div class="form-control-plaintext">johndoe@gmail.com</div>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-3 col-form-label font-weight-bold">Waktu Akun Dibuat</label>
-                        <div class="col-sm-9">
-                            <div class="form-control-plaintext">2024-12-25 14:30:00</div>
-=======
     <title>Profile</title>
 
     <!-- Custom fonts for this template -->
@@ -56,18 +29,6 @@
 
             <!-- Main Content -->
             <div id="content">
-
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <a id="backButton" href="{{ route('dashboard') }}" class="btn btn-link rounded-circle mr-3 d-flex align-items-center" style="position: absolute; top: 0; left: 0; margin: 10px;">
-                     <i class="fa fa-arrow-left" aria-hidden="true" style="margin-right: 5px;"></i>
-                    Back
-                </a>
-
-                </nav>
-                <!-- End of Topbar -->
 
                 <div class="container">
 
@@ -104,7 +65,6 @@
                             <div class="data-box">
                                 <p>{{ $admin->tanggal_akun_dibuat ?? 'N/A' }}</p>
                             </div>
->>>>>>> 34ee5374112fe1f42bc7ec654277aff8f05252cc
                         </div>
                     </div>
                 </div>

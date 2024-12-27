@@ -40,7 +40,7 @@ Route::post('/pendataan', [PengunjungController::class, 'store'])->name('pendata
 Route::get('/data-pengunjung', [PengunjungController::class, 'index'])->name('data-pengunjung.form');
 
 // Route untuk mengedit data pengunjung
-Route::get('/data-pengunjung/{id}/edit', [PengunjungController::class, 'edit'])->name('data-pengunjung.edit');
+Route::get('/data-pengunjung/{id}/edit', [PengunjungController::class, 'edit'])->name('pengunjung.edit');
 Route::put('/data-pengunjung/{id}', [PengunjungController::class, 'update'])->name('data-pengunjung.update');
 
 // Route untuk menghapus data pengunjung
