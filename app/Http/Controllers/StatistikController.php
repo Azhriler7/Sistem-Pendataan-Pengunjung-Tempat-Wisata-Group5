@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pengunjung;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class StatistikController extends Controller
 {
@@ -12,15 +14,44 @@ class StatistikController extends Controller
         $this->middleware('auth');
     }
 
-    // Show the statistics page
     public function index()
     {
-        // Contoh pengambilan data statistik, sesuaikan dengan kebutuhan Anda
         $totalPengunjung = Pengunjung::count();
-        $pengunjungPerBulan = Pengunjung::selectRaw('MONTH(created_at) as bulan, COUNT(*) as jumlah')
-                                        ->groupBy('bulan')
-                                        ->get();
 
-        return view('statistik.index', compact('totalPengunjung', 'pengunjungPerBulan'));
+        $dataPerBulanan = Pengunjung::select(
+            DB::raw('MONTH(created_at) as bulan'),
+            DB::raw('COUNT(*) as jumlah')
+        )
+        ->groupBy('bulan')
+        ->get()
+        ->map(function ($item) {
+            $item->bulan = date('F', mktime(0, 0, 0, $item->bulan, 1)); 
+            return $item;
+        });
+
+        $bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+
+        $tahun = Pengunjung::select(DB::raw('YEAR(created_at) as tahun'))
+                            ->distinct()
+                            ->orderBy('tahun')
+                            ->get()
+                            ->pluck('tahun')->toArray();
+
+        $dataTahunan = Pengunjung::select(DB::raw('YEAR(created_at) as tahun'), DB::raw('COUNT(*) as jumlah'))
+                                 ->groupBy('tahun')
+                                 ->get()
+                                 ->map(function ($item) use ($tahun) {
+                                     $index = array_search($item->tahun, $tahun);
+                                     if ($index === false) {
+                                         $tahun[] = $item->tahun;
+                                         $item->jumlah = 0;
+                                     }
+                                     return $item;
+                                 })
+                                 ->sortBy('tahun')
+                                 ->values()
+                                 ->toArray();
+
+        return view('statistik.statistik', compact('totalPengunjung', 'tahun', 'dataTahunan', 'bulan', 'dataBulanan'));
     }
 }
